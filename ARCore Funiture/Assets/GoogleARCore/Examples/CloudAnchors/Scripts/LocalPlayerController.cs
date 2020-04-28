@@ -91,5 +91,15 @@ namespace GoogleARCore.Examples.CloudAnchors
             NetworkServer.Spawn(starObject);
 #pragma warning restore 618
         }
+
+#pragma warning disable 618
+        [Command]
+#pragma warning restore 618
+        public void CmdDespawnObject(GameObject obj)
+        {
+#pragma warning disable 618
+            NetworkServer.Destroy(obj);
+#pragma warning restore 618
+        }
     }
 }

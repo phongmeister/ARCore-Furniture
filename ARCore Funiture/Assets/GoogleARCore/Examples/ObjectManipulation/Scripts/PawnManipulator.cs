@@ -1,7 +1,7 @@
 //-----------------------------------------------------------------------
 // <copyright file="PawnManipulator.cs" company="Google">
 //
-// Copyright 2019 Google LLC. All Rights Reserved.
+// Copyright 2019 Google LLC All Rights Reserved.
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -39,10 +39,43 @@ namespace GoogleARCore.Examples.ObjectManipulation
         /// </summary>
         public GameObject PawnPrefab;
 
+        public GameObject[] Furniture;
+
         /// <summary>
         /// Manipulator prefab to attach placed objects to.
         /// </summary>
         public GameObject ManipulatorPrefab;
+
+        private const float k_ModelRotation = 180.0f;
+
+        public void EnableChair()
+        {
+            PawnPrefab = Furniture[0];
+        }
+        public void EnableDesk()
+        {
+            PawnPrefab = Furniture[1];
+        }
+        public void EnableDrawer()
+        {
+            PawnPrefab = Furniture[2];
+        }
+        public void EnableLamp()
+        {
+            PawnPrefab = Furniture[3];
+        }
+        public void EnableSofa()
+        {
+            PawnPrefab = Furniture[4];
+        }
+        public void EnableTable()
+        {
+            PawnPrefab = Furniture[5];
+        }
+        public void EnablePaint()
+        {
+            PawnPrefab = Furniture[6];
+        }
 
         /// <summary>
         /// Returns true if the manipulation can be started for the given gesture.
@@ -95,6 +128,7 @@ namespace GoogleARCore.Examples.ObjectManipulation
                 {
                     // Instantiate game object at the hit pose.
                     var gameObject = Instantiate(PawnPrefab, hit.Pose.position, hit.Pose.rotation);
+                    gameObject.transform.Rotate(0, k_ModelRotation, 0, Space.Self);
 
                     // Instantiate manipulator.
                     var manipulator =

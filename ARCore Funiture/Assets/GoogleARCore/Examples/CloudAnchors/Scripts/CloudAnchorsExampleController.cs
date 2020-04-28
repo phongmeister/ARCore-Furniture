@@ -39,6 +39,9 @@ namespace GoogleARCore.Examples.CloudAnchors
     /// </summary>
     public class CloudAnchorsExampleController : MonoBehaviour
     {
+
+        public static GameObject SelectedModel = null;  
+
         [Header("ARCore")]
 
         /// <summary>
@@ -302,6 +305,15 @@ namespace GoogleARCore.Examples.CloudAnchors
                 return;
             }
 
+            RaycastHit hit2;
+            Ray raycast = Camera.main.ScreenPointToRay(touch.position);
+            if (Physics.Raycast(raycast, out hit2, Mathf.Infinity))
+            {
+                
+                SelectedModel = hit2.transform.gameObject;
+                SelectedModel.GetComponent<LocalPlayerController>().AnchorPrefab.gameObject.SetActive(true);
+            }
+
             // Ignore the touch if it's pointing on UI objects.
             if (EventSystem.current.IsPointerOverGameObject(touch.fingerId))
             {
@@ -335,11 +347,11 @@ namespace GoogleARCore.Examples.CloudAnchors
             {
                 // The first touch on the Hosting mode will instantiate the origin anchor. Any
                 // subsequent touch will instantiate a star, both in Hosting and Resolving modes.
-                if (_CanPlaceStars())
+                /*if (_CanPlaceStars())
                 {
                     _InstantiateStar();
-                }
-                else if (!IsOriginPlaced && m_CurrentMode == ApplicationMode.Hosting)
+                }*/
+                if (!IsOriginPlaced && m_CurrentMode == ApplicationMode.Hosting)
                 {
                     if (Application.platform != RuntimePlatform.IPhonePlayer)
                     {
@@ -639,7 +651,7 @@ namespace GoogleARCore.Examples.CloudAnchors
             // Exit the app when the 'back' button is pressed.
             if (Input.GetKey(KeyCode.Escape))
             {
-                Application.Quit();
+                SceneManager.LoadScene("ARCore");
             }
 
             var sleepTimeout = SleepTimeout.NeverSleep;
@@ -721,5 +733,12 @@ namespace GoogleARCore.Examples.CloudAnchors
 #pragma warning restore 618
             SceneManager.LoadScene("CloudAnchors");
         }
+
+        public void DeleteObject()
+        {
+            GameObject.Find("LocalPlayer").GetComponent<LocalPlayerController>()
+                .CmdDespawnObject(SelectedModel.transform.parent.gameObject);
+        }
+
     }
 }

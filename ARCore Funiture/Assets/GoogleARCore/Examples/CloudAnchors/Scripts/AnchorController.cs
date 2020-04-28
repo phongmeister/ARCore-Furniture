@@ -89,7 +89,7 @@ namespace GoogleARCore.Examples.CloudAnchors
             m_CloudAnchorsExampleController =
                 GameObject.Find("CloudAnchorsExampleController")
                     .GetComponent<CloudAnchorsExampleController>();
-            m_AnchorMesh = transform.Find("AnchorMesh").gameObject;
+            m_AnchorMesh = transform.Find("Chair").gameObject;
             m_AnchorMesh.SetActive(false);
         }
 
