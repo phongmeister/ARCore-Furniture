@@ -1,21 +1,13 @@
 sceneSetups:
 - path: Assets/Scenes/ARCore.unity
-  isLoaded: 0
-  isActive: 0
-  isSubScene: 0
-- path: Assets/GoogleARCore/Examples/CloudAnchors/Scenes/CloudAnchors.unity
-  isLoaded: 1
-  isActive: 0
-  isSubScene: 0
-- path: Assets/GoogleARCore/Examples/ObjectManipulation/Scenes/ObjectManipulation.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
-- path: Assets/Scenes/SingleAR.unity
+- path: Assets/GoogleARCore/Examples/CloudAnchors/Scenes/CloudAnchors.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0
-- path: Assets/Scenes/Scene.unity
+- path: Assets/GoogleARCore/Examples/ObjectManipulation/Scenes/ObjectManipulation.unity
   isLoaded: 0
   isActive: 0
   isSubScene: 0
